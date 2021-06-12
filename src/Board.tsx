@@ -7,16 +7,18 @@ type Props = {
 
 const Board: React.VFC<Props> = (props) => {
     const [squares, setSquares] = useState(Array<string | null>(9).fill(null))
+    const [xIsNext, setXIsNext] = useState(true)
     const handleClick = (i: number) => {
         const baseSquares = squares.slice()
-        baseSquares[i] = "X"
+        baseSquares[i] = xIsNext ? "X" : "O"
         setSquares(baseSquares)
+        setXIsNext(!xIsNext)
     };
 
     const renderSquare = (i: number) => {
         return <Square value={squares[i]} onClick={() => handleClick(i)} />;
     }
-    const status = 'Next player: X';
+    const status = 'Next player: ' + (xIsNext ? "X" : "O");
     return (
         <div>
             <div className="status">{status}</div>
