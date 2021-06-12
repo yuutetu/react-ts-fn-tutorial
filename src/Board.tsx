@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import Square from "./Square";
 
 type Props = {
@@ -6,8 +6,15 @@ type Props = {
 }
 
 const Board: React.VFC<Props> = (props) => {
+    const [squares, setSquares] = useState(Array<string | null>(9).fill(null))
+    const handleClick = (i: number) => {
+        const baseSquares = squares.slice()
+        baseSquares[i] = "X"
+        setSquares(baseSquares)
+    };
+
     const renderSquare = (i: number) => {
-        return <Square />;
+        return <Square value={squares[i]} onClick={() => handleClick(i)} />;
     }
     const status = 'Next player: X';
     return (

@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 
 type Props = {
+    value: string | null,
+    onClick: () => void
 }
 
 const Square: React.VFC<Props> = (props) => {
-    const [value, setValue] = useState<string | null>(null)
     return (
-        <button className="square" onClick={() => { setValue("X"); }}>
-            {value}
+        <button className="square" onClick={() => { props.onClick(); }}>
+            {props.value}
         </button >
     )
 }
