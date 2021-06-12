@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 type Props = {
-    value: number
 }
 
 const Square: React.VFC<Props> = (props) => {
+    const [value, setValue] = useState<string | null>(null)
     return (
-        <button className="square">
-            {props.value}
-        </button>
+        <button className="square" onClick={() => { setValue("X"); }}>
+            {value}
+        </button >
     )
 }
 
