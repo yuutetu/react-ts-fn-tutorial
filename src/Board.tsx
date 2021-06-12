@@ -7,7 +7,7 @@ type Props = {
 
 const Board: React.VFC<Props> = (props) => {
     const renderSquare = (i: number) => {
-        return <Square />;
+        return <Square value={i} />;
     }
     const status = 'Next player: X';
     return (
