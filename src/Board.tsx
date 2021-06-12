@@ -1,27 +1,17 @@
-import React, { useCallback, useState } from "react";
+import React from "react";
 import Square from "./Square";
 
 type Props = {
-
+    squares: Array<string | null>,
+    handleClick: (i: number) => void
 }
 
 const Board: React.VFC<Props> = (props) => {
-    const [squares, setSquares] = useState(Array<string | null>(9).fill(null))
-    const [xIsNext, setXIsNext] = useState(true)
-    const handleClick = (i: number) => {
-        const baseSquares = squares.slice()
-        baseSquares[i] = xIsNext ? "X" : "O"
-        setSquares(baseSquares)
-        setXIsNext(!xIsNext)
-    };
-
     const renderSquare = (i: number) => {
-        return <Square value={squares[i]} onClick={() => handleClick(i)} />;
+        return <Square value={props.squares[i]} onClick={() => props.handleClick(i)} />;
     }
-    const status = 'Next player: ' + (xIsNext ? "X" : "O");
     return (
         <div>
-            <div className="status">{status}</div>
             <div className="board-row">
                 {renderSquare(0)}
                 {renderSquare(1)}
